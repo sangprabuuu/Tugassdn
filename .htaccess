@@ -1,0 +1,48 @@
+<IfModule mod_rewrite.c>
+    <IfModule mod_negotiation.c>
+        Options -MultiViews -Indexes
+    </IfModule>
+
+    RewriteEngine On
+
+    # Handle Authorization Header
+    RewriteCond %{HTTP:Authorization} .
+    RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+
+    # Redirect Trailing Slashes If Not A Folder...
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_URI} (.+)/$
+    RewriteRule ^ %1 [L,R=301]
+
+    # Send Requests To Front Controller...
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^ index.php [L]    
+
+    # # Rewrite rule for the user module
+    # RewriteRule ^user$ page.php?mod=user [L,QSA]
+
+    # # Rewrite rule for the stok module
+    # RewriteRule ^stok$ page.php?mod=stok [L,QSA]
+
+    # # Rewrite rule for the laporan module
+    # RewriteRule ^laporan$ page.php?mod=laporan [L,QSA]
+
+    # # Rewrite rule for the home module
+    # RewriteRule ^home$ page.php?mod=home [L,QSA]
+
+    # # Rewrite rule for the logout module
+    # RewriteRule ^logout$ page.php?mod=logout [L,QSA]
+
+    # # Rewrite rule for adding a user
+    # RewriteRule ^user/tambah$ user/tambah_user.php [L,QSA]
+
+    # # Rewrite rule for editing a user
+    # RewriteRule ^user/edit$ user/edit_user.php [L,QSA]
+
+    # # Rewrite rule for deleting a user
+    # RewriteRule ^user/hapus$ user/hapus_user.php [L,QSA]
+
+    # # Default to home if no module is specified
+    # RewriteRule ^$ page.php?mod=home [L,QSA]
+</IfModule>
